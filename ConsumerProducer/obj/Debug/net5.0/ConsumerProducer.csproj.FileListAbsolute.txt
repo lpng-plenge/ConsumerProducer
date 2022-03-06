@@ -1,0 +1,16 @@
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\bin\Debug\net5.0\ConsumerProducer.exe
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\bin\Debug\net5.0\ConsumerProducer.deps.json
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\bin\Debug\net5.0\ConsumerProducer.runtimeconfig.json
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\bin\Debug\net5.0\ConsumerProducer.runtimeconfig.dev.json
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\bin\Debug\net5.0\ConsumerProducer.dll
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\bin\Debug\net5.0\ref\ConsumerProducer.dll
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\bin\Debug\net5.0\ConsumerProducer.pdb
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ConsumerProducer.csproj.AssemblyReference.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ConsumerProducer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ConsumerProducer.AssemblyInfoInputs.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ConsumerProducer.AssemblyInfo.cs
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ConsumerProducer.csproj.CoreCompileInputs.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ConsumerProducer.dll
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ref\ConsumerProducer.dll
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ConsumerProducer.pdb
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\ConsumerProducer\obj\Debug\net5.0\ConsumerProducer.genruntimeconfig.cache
