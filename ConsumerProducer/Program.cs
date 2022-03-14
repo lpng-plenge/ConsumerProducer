@@ -6,32 +6,20 @@ namespace ConsumerProducer
     class Program
     {
         Random random = new Random();
-        //MUTEX
-        private static Mutex mut = new Mutex();
-        private static int numThreads = 2; //cambiar con la interfaz
 
-        //List Prueba 1
+       private static int _numeroConsumidores = 5;
+       private static int _numeroProductores = 3;
+
+        private static int _tamBuffer = 10;
+        private static int _tiempoConsumidor = 1000;
+        private static int _tiempoProductor = _numeroProductores*1000;
+
         static void Main(string[] args)
         {
             //call the threads producer and consumer 
-               
-        }
-
-        private void producer()
-        {
-            while (true)
-            {
-                double x = random.Next(1000);
-                Monitor.append(x);        
-            }
-        }
-
-        private void consumer()
-        {
-            while (true)
-            {
-                Monitor.take();
-            }
+            ProducerConsumer pc = new ProducerConsumer(_numeroConsumidores, _numeroProductores, _tamBuffer, _tiempoConsumidor,_tiempoProductor);
+            pc.Comenzar();
         }
     }
-}
+  
+    }
