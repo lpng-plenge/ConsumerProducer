@@ -10,7 +10,7 @@ namespace ConsumerProducer
        private static int _numeroProductores = 3;
        private static int _tamBuffer = 10;
        private static int _tiempoConsumidor = 5*1000;
-       private static int _tiempoProductor = 5*1000;
+       private static int _tiempoProductor = 1000;
 
         static void Main(string[] args)
         {
@@ -19,7 +19,7 @@ namespace ConsumerProducer
             pc.Comenzar();
             pc.Apagar(true);
 
-            Console.WriteLine("Ya termino");
+            Console.WriteLine("Termino");
         }
     }
   

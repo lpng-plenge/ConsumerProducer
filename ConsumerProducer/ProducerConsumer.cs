@@ -33,69 +33,69 @@ namespace ConsumerProducer
         //PRIVADOS
         private void Produce()
         {
-            while (_productos.Count < _bufferSize)//seguir produciendo hasta que diga lo contrario
+            while (_contador<_bufferSize)//seguir produciendo hasta que diga lo contrario
             {
+                Console.WriteLine("Productor en espera...\n");
                 //seccion critica
                 lock (_noVacio)
                 {
                     while (_contador == _bufferSize) Monitor.Wait(_noVacio);
+                    //Inicio Seccion Critica
+                    Console.WriteLine("Entro un productor...");
                     setProductoAgregado();
-                    Thread.Sleep(getTimeProductor());
-                    //Console.WriteLine($"Duracion: {getTimeProductor()}\n");
-                    _contador++;                    
+                    Console.WriteLine($"Se ha producido el producto: {getProductoAgregado()}");
+                    Console.WriteLine($"Duracion: {getTimeProductor()}\n");
+                    //Final Seccion Critica
+                    _contador++;
                     Monitor.Pulse(_noVacio);
+                    Thread.Sleep(getTimeProductor());
                 }
-
             }
         }
 
         private void Consume()
         {
-            while (_productos.Count>= 0) //seguir consumiendo hasta que se diga lo contrario
+            while (true) //seguir consumiendo hasta que se diga lo contrario
             {
-                //seccion critica
+                Console.WriteLine("Consumidor en espera...\n");
                 lock (_noVacio){
                     while (_contador== 0) Monitor.Wait(_noVacio);
+                    //Inicio Seccion Critica
+                    Console.WriteLine("Entro un consumidor");
                     setProductoTomado();
-                    Thread.Sleep(getTimeConsumidores());
-                    //Console.WriteLine($"Duracion: {getTimeConsumidores()}\n");
+                    Console.WriteLine($"Se ha consumido el producto : {getProductoEliminado()}");
+                    Console.WriteLine($"Duracion: {getTimeConsumidores()}\n");
+                    //Final Seccion Critica
                     _contador--;
-                    Monitor.Pulse(_noVacio);
                 }
+                Thread.Sleep(getTimeConsumidores());
+                if (_contador <= 0) return;
             }
         }
-        
+
         private void setProductoAgregado()
         {
-            Console.WriteLine("Se esta produciendo...");
-            this._productoAgregado = ran.Next(500);
+            this._productoAgregado = ran.Next(100);
             _productos.Enqueue(this._productoAgregado);
-            Console.WriteLine($"Se ha producido el producto: {this._productoAgregado}");
         }
 
         private void setProductoTomado()
         {
-            //Se elimina el primero que se agrego a la cola
-            int contador=0;
-            Console.WriteLine("Entro un consumidor");
-            this._productoEliminado = _productos.ElementAt(contador);
-            Console.WriteLine($"Se ha consumido el producto : {this._productoEliminado}");
+            int ubicacion=0;
+            this._productoEliminado = _productos.ElementAt(ubicacion);
             _productos.Dequeue();
         }
 
         //PUBLICOS 
-
         public void Comenzar()
         {
-
             //Descomentar Si es Un Solo Productor(_productor = new Thread(Produce)).Start();
-
             _productor = new Thread[getProducer()];
             for (int i = 0; i < getProducer(); i++)
             {
                 (_productor[i] = new Thread(Produce)).Start();
             }
-
+            //Descomentar Si es Un Solo Consumidor(_consumidor = new Thread(Consume)).Start();
             _consumidor = new Thread[getConsumer()];
             for (int i = 0; i < getConsumer(); i++)
             {
@@ -105,10 +105,11 @@ namespace ConsumerProducer
 
         public void Apagar(bool esperarConsumidores)
         {
-            // Wait for workers to finish
             if (esperarConsumidores)
-                foreach (Thread consumidor in _consumidor)
-                    consumidor.Join();
+            {
+                foreach (Thread consumidor in _consumidor) consumidor.Join();
+                foreach (Thread productor in _productor) productor.Join();
+            }
         }
         //Gets
         public void getQueue()
