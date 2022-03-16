@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
-
-namespace ConsumerProducer
+namespace CPCode
 {
     class ProducerConsumer
     {
@@ -52,7 +50,7 @@ namespace ConsumerProducer
             }
         }
 
-        private void Consume()
+        private void  Consume()
         {
             while (true) //seguir consumiendo hasta que se diga lo contrario
             {
@@ -68,7 +66,8 @@ namespace ConsumerProducer
                     _contador--;
                 }
                 Thread.Sleep(getTimeConsumidores());
-                if (_contador <= 0) return;
+                if (_contador <=0) return;
+                ;
             }
         }
 
@@ -102,14 +101,23 @@ namespace ConsumerProducer
             }
         }
 
-        public void Apagar(bool esperarConsumidores)
+        public void Detener()
+        {
+            foreach (Thread consumidor in _consumidor) consumidor.Abort();
+            foreach (Thread productor in _productor) productor.Abort();
+
+        }
+
+        public void Finalizar(bool esperarConsumidores)
         {
             if (esperarConsumidores)
             {
                 foreach (Thread consumidor in _consumidor) consumidor.Join();
                 foreach (Thread productor in _productor) productor.Join();
             }
+            Detener();
         }
+
         //Gets
         public void getQueue()
         {
@@ -140,6 +148,10 @@ namespace ConsumerProducer
         public int getProducer()
         {
             return this._numProducer;
+        }
+        public int getBuffer()
+        {
+            return this._bufferSize;
         }
         //Sets
         public void setTimeProductores(int timeP)

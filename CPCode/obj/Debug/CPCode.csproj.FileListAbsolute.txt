@@ -1,0 +1,10 @@
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\bin\Debug\CPCode.exe.config
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\bin\Debug\CPCode.exe
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\bin\Debug\CPCode.pdb
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\obj\Debug\CPCode.csproj.AssemblyReference.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\obj\Debug\CPCode.Properties.Resources.resources
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\obj\Debug\CPCode.csproj.GenerateResource.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\obj\Debug\CPCode.csproj.CoreCompileInputs.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\obj\Debug\CPCode.exe
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\obj\Debug\CPCode.pdb
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\CPCode\obj\Debug\CPCode.Form1.resources
