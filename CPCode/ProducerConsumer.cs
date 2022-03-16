@@ -9,14 +9,17 @@ namespace CPCode
     {
         //Solucion 2 Varios Productores     
         Thread[] _consumidor;
-        //Thread _consumidor;
         Thread[] _productor;
+        Thread[] _singleConsumidor;
+        Thread[] _singleProductor;
+
         Queue<int> _productos = new Queue<int>();
         Random ran = new Random();
         
         readonly object _noVacio = new object();
 
         private int _contador = 0,_timeConsumer=0, _timeProducer=0,_bufferSize = 0, _numConsumer=0, _numProducer=0, _productoEliminado=0, _productoAgregado=0;
+        private int _contadorConsumidor = 0, _consumidorActual, _contadorProductor=0, _productorActual;
 
         //CONS
         public ProducerConsumer(int consumidor, int productor, int bS, int timeC, int timeP)
@@ -33,39 +36,40 @@ namespace CPCode
         {
             while (_contador<_bufferSize)//seguir produciendo hasta que diga lo contrario
             {
-                Console.WriteLine("Productor en espera...\n");
+                setContadorProductor(getProducer());
                 lock (_noVacio)
                 {
-                    while (_contador == _bufferSize) Monitor.Wait(_noVacio);
+                    //while (_contador == _bufferSize) Monitor.Wait(_noVacio);
                     //Inicio Seccion Critica
-                    Console.WriteLine("Entro un productor...");
+                    _productorActual = getContadorProductor();
+                    Console.WriteLine($"Entro productor: {getProductorActual()}");
                     setProductoAgregado();
                     Console.WriteLine($"Se ha producido el producto: {getProductoAgregado()}");
-                    Console.WriteLine($"Duracion: {getTimeProductor()}\n");
                     //Final Seccion Critica
                     _contador++;
                     Monitor.Pulse(_noVacio);
-                    Thread.Sleep(getTimeProductor());
+                    Thread.Sleep(getTimeProductor());//se duerme al terminar de producir
                 }
             }
         }
-
+        //
         private void  Consume()
         {
             while (true) //seguir consumiendo hasta que se diga lo contrario
             {
-                Console.WriteLine("Consumidor en espera...\n");
+                setContadorConsumidor(getConsumer());
+                //Colocar todos los hilos en 0
                 lock (_noVacio){
                     while (_contador== 0) Monitor.Wait(_noVacio);
                     //Inicio Seccion Critica
-                    Console.WriteLine("Entro un consumidor");
+                    _consumidorActual = getContadorConsumidor();
+                    Console.WriteLine($"Entro consumidor: {getConsumidorActual()}");
                     setProductoTomado();
                     Console.WriteLine($"Se ha consumido el producto : {getProductoEliminado()}");
-                    Console.WriteLine($"Duracion: {getTimeConsumidores()}\n");
                     //Final Seccion Critica
                     _contador--;
                 }
-                Thread.Sleep(getTimeConsumidores());
+                Thread.Sleep(getTimeConsumidores());//si esta bloqueado a dormir
                 if (_contador <=0) return;
                 ;
             }
@@ -87,18 +91,30 @@ namespace CPCode
         //PUBLICOS 
         public void Comenzar()
         {
-            //Descomentar Si es Un Solo Productor(_productor = new Thread(Produce)).Start();
+            //Descomentar Si es Un Solo Productor(_singleProductor = new Thread(Produce)).Start();
             _productor = new Thread[getProducer()];
             for (int i = 0; i < getProducer(); i++)
             {
                 (_productor[i] = new Thread(Produce)).Start();
             }
-            //Descomentar Si es Un Solo Consumidor(_consumidor = new Thread(Consume)).Start();
+            //Descomentar Si es Un Solo Consumidor(_singleConsumidor = new Thread(Consume)).Start();
             _consumidor = new Thread[getConsumer()];
             for (int i = 0; i < getConsumer(); i++)
             {
                 (_consumidor[i] = new Thread(Consume)).Start();
             }
+        }
+        public void AgregarProductor()
+        {
+            setProducer(getProducer() + 1);
+            Thread _singleProductor = new Thread(Produce);
+            _singleProductor.Start();
+        }
+        public void AgregarConsumidor()
+        {
+            setConsumer(getConsumer() + 1);
+            Thread _singleConsumidor = new Thread(Consume);
+            _singleConsumidor.Start();
         }
 
         public void Detener()
@@ -119,11 +135,26 @@ namespace CPCode
         }
 
         //Gets
-        public void getQueue()
+        public int[] getQueue()
         {
-            Console.WriteLine("Valores de la cola: ");
-            foreach (Object ob in _productos) Console.WriteLine($" {ob}");
-            Console.WriteLine("\n");
+            int[] buffer ;
+            if (_productos.Count != null)
+            {
+                buffer = new int[_productos.Count];
+                for (int i = 0; i < _productos.Count; i++)
+                {
+                    buffer[i] = _productos.ElementAt(i);
+                }
+            }
+            else
+            {
+                buffer = null;
+            }
+            return buffer;
+        }
+        public int getQueueLong()
+        {
+            return this._productos.Count;
         }
         public int getProductoEliminado()
         {
@@ -153,6 +184,22 @@ namespace CPCode
         {
             return this._bufferSize;
         }
+        public int getContadorConsumidor()
+        {
+            return this._contadorConsumidor;
+        }
+        public int getConsumidorActual()
+        {
+            return this._consumidorActual;
+        }
+        public int getContadorProductor()
+        {
+            return this._contadorProductor;
+        }
+        public int getProductorActual()
+        {
+            return this._productorActual;
+        }
         //Sets
         public void setTimeProductores(int timeP)
         {
@@ -177,6 +224,17 @@ namespace CPCode
         public void setBufferSize(int x)
         {
             this._bufferSize = x;
+        }
+
+        public void setContadorConsumidor(int x)
+        {
+            if (this._contadorConsumidor >= x) this._contadorConsumidor = 0;
+            this._contadorConsumidor++;
+        }
+        public void setContadorProductor(int x)
+        {
+            if (this._contadorProductor >= x) this._contadorProductor = 0;
+            this._contadorProductor++;
         }
     }
 }
