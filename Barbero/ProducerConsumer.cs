@@ -32,6 +32,7 @@ namespace CPCode
         }
 
         //PRIVADOS
+        //Clientes
         private void Produce()
         {
             while (_contador<_bufferSize)//seguir produciendo hasta que diga lo contrario
@@ -42,35 +43,36 @@ namespace CPCode
                     //while (_contador == _bufferSize) Monitor.Wait(_noVacio);
                     //Inicio Seccion Critica
                     _productorActual = getContadorProductor();
-                    Console.WriteLine($"Entro productor: {getProductorActual()}");
+                    Console.WriteLine($"Entro cliente: {getProductorActual()}");
                     setProductoAgregado();
-                    Console.WriteLine($"Se ha producido el producto: {getProductoAgregado()}");
+                    Console.WriteLine($"Se ha sentado en la silla: {getProductoAgregado()}");
                     //Final Seccion Critica
                     _contador++;
                     Monitor.Pulse(_noVacio);
-                    Thread.Sleep(getTimeProductor());//se duerme al terminar de producir
                 }
+                Thread.Sleep(getTimeProductor());//se duerme al terminar de producir
             }
         }
-        //
+        //Barbero
         private void  Consume()
         {
-            while (true) //seguir consumiendo hasta que se diga lo contrario
+            while (true) //seguir cortando hasta que se diga lo contrario
             {
                 setContadorConsumidor(getConsumer());
                 //Colocar todos los hilos en 0
-                lock (_noVacio){
-                    while (_contador== 0) Monitor.Wait(_noVacio);
+                lock (_noVacio)
+                {
+                    while (_contador == 0) Monitor.Wait(_noVacio);
                     //Inicio Seccion Critica
                     _consumidorActual = getContadorConsumidor();
-                    Console.WriteLine($"Entro consumidor: {getConsumidorActual()}");
+                    Console.WriteLine($"Entro cliente: {getConsumidorActual()}");
                     setProductoTomado();
-                    Console.WriteLine($"Se ha consumido el producto : {getProductoEliminado()}");
+                    Console.WriteLine($"Ha cortado el cabello del cliente: {getProductoEliminado()}");
                     //Final Seccion Critica
                     _contador--;
                 }
                 Thread.Sleep(getTimeConsumidores());//si esta bloqueado a dormir
-                if (_contador <=0) return;
+                //if (_contador <= 0) return;
             }
         }
 

@@ -1,0 +1,10 @@
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\bin\Debug\Barbero.exe.config
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\bin\Debug\Barbero.exe
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\bin\Debug\Barbero.pdb
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\obj\Debug\Barbero.csproj.AssemblyReference.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\obj\Debug\Barbero.Form1.resources
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\obj\Debug\Barbero.Properties.Resources.resources
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\obj\Debug\Barbero.csproj.GenerateResource.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\obj\Debug\Barbero.csproj.CoreCompileInputs.cache
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\obj\Debug\Barbero.exe
+D:\Usuarios\Luis Pablo Personal y Creativo\Documentos\GitHub\ConsumerProducer\Barbero\obj\Debug\Barbero.pdb
